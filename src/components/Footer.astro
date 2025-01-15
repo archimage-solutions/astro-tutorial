@@ -1,11 +1,15 @@
 ---
-const platform = "github";
-const username = "archimage-solutions";
-const linkedIn = "linkedin";
-const linkedin_user = "oliver-prescott";
+import Social from './Social.astro';
 ---
+<style>
+    footer {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+</style>
 
 <footer>
-  <p>Learn more about my projects on <a href={`https://www.${platform}.com/${username}`}>{platform}</a>!</p>
-  <p>Connect with me on <a href={`https://www.${linkedIn}.com/in/${linkedin_user}`}>linkedIn</a></p>
+    <Social platform="github" username="oli-pr" />
+    <Social platform="linkedIn" platformLink="www.linkedin.com/in" username="oliver-prescott" />
 </footer>
