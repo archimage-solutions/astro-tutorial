@@ -1,0 +1,40 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Image from '~/components/common/Image.astro';
+import { getAllCategories } from '~/utils/blog';
+
+const categories = await getAllCategories();
+
+const currentDomain = Astro.site?.href
+
+const cloudImage = '~/assets/images/cloud-cropped.png';
+
+const metadata = {
+  title: 'All Tags',
+  description: 'Browse all blog post tags',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero actions={[]}>
+    <Fragment slot="title"> Blogs</Fragment>
+
+    <Fragment slot="subtitle">
+      Browse by Categories
+      <Image src={cloudImage} alt="Abstract Cloud Technology" height={1200} />
+      <div class="flex flex-wrap justify-center gap-4">
+        {
+          Object.entries(categories).map(([category, count]) => (
+            <a
+              href={`${currentDomain}category/${category}`}
+              class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 px-4 py-2 rounded-full text-sm transition duration-150"
+            >
+              {category} ({count.toString()})
+            </a>
+          ))
+        }
+      </div>
+    </Fragment>
+  </Hero>
+</Layout> 

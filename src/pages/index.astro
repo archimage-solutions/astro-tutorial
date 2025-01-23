@@ -1,11 +1,344 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
-import Greeting from "../components/Greeting"
-const pageTitle = "Archimage Solutions Home"
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Header from '~/components/widgets/Header.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Image from '~/components/common/Image.astro';
+
+const cloudImage = '~/assets/images/cloud-cropped.png';
+const govAgencyImage = '~/assets/images/GovDept.jpg';
+const enterpriseImage = '~/assets/images/Enterprise.jpg';
+const startupImage = '~/assets/images/Startup.jpg';
+const consultImage = '~/assets/images/Consultancy.jpg';
+
+const metadata = {
+  title: 'Welcome to Archimage Solutions',
+};
 ---
-<BaseLayout pageTitle={pageTitle}>
-	<h2>My awesome blog subtitle</h2>
-	<Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
-</BaseLayout>
 
+<Layout metadata={metadata}>
+  <Fragment slot="header">
+    <Header
+      links={[
+        { text: 'Home', href: '#' },
+        { text: 'Services', href: '#services' },
+        { text: 'Engagements', href: '#exampleengagements' },
+        { text: 'Team', href: './team' },
+        { text: 'Blog', href: './blog' },
+        { text: 'Github', href: 'https://github.com/archimage-solutions' },
+      ]}
+      actions={[
+        {
+          variant: 'primary',
+          target: '_blank',
+          text: 'Contact Us',
+          href: './contact',
+          icon: 'tabler:mail',
+        },
+      ]}
+      isSticky
+      showRssFeed
+      showToggleTheme
+    />
+  </Fragment>
 
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        target: '_blank',
+        text: 'Contact Us',
+        href: './contact',
+        icon: 'tabler:mail',
+      },
+      { text: 'Learn more', href: '#services' },
+    ]}
+  >
+    <Fragment slot="title">
+      Solve <span class="hidden sm:inline">your </span><span class="text-accent dark:text-white highlight">Cloud</span> problems
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      We help <span class="font-semibold">Accelerate</span> and <span class="font-semibold">Cost Optimise</span> your Cloud
+      Adoption.
+      <br />Trust us to <span class="font-semibold">Shape</span>, <span class="font-semibold">Secure</span> and <span
+        class="font-semibold">Scale</span
+      > your workloads.
+      <Image src={cloudImage} alt="Abstract Cloud Technology" height={1200} />
+    </Fragment>
+  </Hero>
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    id="about"
+    title="About us"
+    subtitle="We are a Cloud Consultancy that help businesses and organisations of all sizes solve some of their toughest Cloud and Technology problems."
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <Features2
+    id="services"
+    title="What services do we provide?"
+    subtitle="We offer a range of services from Enterprise Strategy to detailed and hands-on Cloud Implementation and Security."
+    items={[
+      {
+        title: 'Solution Architecture Design and Well Architected Reviews',
+        description:
+          'We help clients design the right solution for their platforms and workloads and help them adhere to Well Architected Principles through reviews and feedback',
+        icon: 'flat-color-icons:document',
+      },
+      {
+        title: 'Platform Management, Governance and Automation',
+        description:
+          'Whether a bespoke Landing Zone or a single workload, we can provide the Infrastructure as Code and automation to unlock reproducability and high cadence delivery',
+        icon: 'flat-color-icons:circuit',
+      },
+      {
+        title: 'AI Adoption',
+        description:
+          'We can help you select the right tools and architecture to achieve your AI ambition. We specialise in making your data work for you in a secure and compliant fashion to generate the insights you need',
+        icon: 'flat-color-icons:electronics',
+      },
+      {
+        title: 'FinOps',
+        description:
+          'We can help you plan for a new Cloud Estate that balances your needs and finances, and help you optimise what you have now to save you money on your Cloud bills',
+        icon: 'flat-color-icons:sales-performance',
+      },
+      {
+        title: 'Security and Compliance',
+        description:
+          'We have lots of experience with helping customers design for security or identifying and remediating existing issues. We can also help achieve and improve your compliance against well know frameworks and standards',
+        icon: 'flat-color-icons:privacy',
+      },
+      {
+        title: 'Migration Assessment, Planning and Execution',
+        description:
+          'We help you assess your existing estate, produce a migration plan and execute it to seamlessly transition your on-premise workloads to the Cloud',
+        icon: 'flat-color-icons:entering-heaven-alive',
+      },
+      {
+        title: 'Strategy, Horizon Scanning, Standards, and Policy',
+        description:
+          'We help you build a Strategy to drive modernisation of your estate and create Standards and Policy to put your new services and workloads on the right footing',
+        icon: 'unjs:image-meta',
+      },
+      {
+        title: 'PoC to Cloud Deployment',
+        description:
+          'Do you have prototype functionality that you need to demonstrate to your clients? We can help by rapidly deploying this as a secure and scalable workload in the Cloud',
+        icon: 'unjs:destr',
+      },
+      {
+        title: 'Troubleshooting',
+        description:
+          'Do you have an unreliable workload? Does your solution struggle to scale and meet demand? We can help with tactical solutions and create an action plan to set the right foundations for long term platform stability and volume growth',
+        icon: 'flat-color-icons:support',
+      },
+    ]}
+  >
+  </Features2>
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    title="Domain Knowledge"
+    subtitle="Domains we have worked in include:"
+    columns={3}
+    items={[
+      {
+        title: 'Aviation',
+        description: 'Online booking systems and payments',
+        icon: 'tabler:plane-tilt',
+      },
+      {
+        title: 'Banking and Payments',
+        description: 'Banking, Regulatory Compliance and Payments',
+        icon: 'tabler:building-bank',
+      },
+      {
+        title: 'Telecoms',
+        description: 'Provisioning, Online Retail and Customer Relationship Management',
+        icon: 'tabler:cell-signal-5',
+      },
+      {
+        title: 'Vehicles and Licensing',
+        description: 'Driver, Vehicle Licensing and Copetency Systems',
+        icon: 'tabler:car',
+      },
+      {
+        title: 'Startups',
+        description: 'Data Streaming, Event Driven and Serverless Platforms',
+        icon: 'tabler:arrow-big-up-lines',
+      },
+      {
+        title: 'Government, Defence and Policing',
+        description: 'Extensive experience across a number of sub-domains',
+        icon: 'tabler:shield-star',
+      },
+    ]}
+  />
+
+  <Content
+    title="Example Engagements"
+    id="exampleengagements"
+    subtitle="Discover how we help other clients succeed:"
+    isReversed
+    items={[
+      {
+        title: 'Problem:',
+        description: 'A Government Agency needed Guard Rails and a Safety Net for Cloud Adoption.',
+      },
+      {
+        title: 'Solution:',
+        description: `We delivered a custom AWS Landing Zone and a Technical Architecture for creating small blast radii for both the workloads and strong isolation where needed for the existing on-prem estate.`,
+      },
+      {
+        title: 'Outcome:',
+        description: `The customer was able to rapidly deliver new capabilities in AWS while demonstrating improved and automated security and compliance.`,
+      },
+    ]}
+    image={{
+      src: '~/assets/images/GovDept.jpg',
+      alt: 'Government Agency',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Enterprise Cloud Adoption: <br /><span class="text-2xl">AWS Landing Zone</span>
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    isAfterContent={true}
+    items={[
+      {
+        title: 'Problem:',
+        description: `A Government Agency needed a business case for cloud adoption.`,
+      },
+      {
+        title: 'Solution:',
+        description: `We worked with the customer to elaborate the requirements quickly and put together a POC end to end data processing platform in 10 days showcasing the agility of the Cloud vs. On Prem and state of the art AWS AI services for analysis.`,
+      },
+      {
+        title: 'Outcome:',
+        description: `The POC was a runaway success with presentation to Agency heads which showcased the business benefits of Cloud Adoption. This was instrumental in leading a traditionally risk-averse organization on their Cloud Journey and gained buy in for multi-million multi-year programme of Cloud Adoption.`,
+      },
+    ]}
+    image={{
+      src: '~/assets/images/Enterprise.jpg',
+      alt: 'Enterprise building',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Enterprise Cloud Adoption: <br /><span class="text-2xl">Showcasing and gaining buy-in</span>
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    isReversed
+    items={[
+      {
+        title: 'Problem:',
+        description:
+          'A Startup Client with a small team needed to demonstrate their platform to clients quickly. They had some docker images and a basic docker compose file. The system used multiple databases and middleware.',
+      },
+      {
+        title: 'Solution:',
+        description: `We delivered an AWS Landing Zone and a Technical Architecture for hosting the plaform and applications in AWS. The deployment was all fully automated via CloudFormation and the system was secured so only MFA'd users could access the User Interfaces. The Solution was specifically designed to account for a low TCO.`,
+      },
+      {
+        title: 'Outcome:',
+        description: `The Startup was able to easily demonstrate their platform to potential customers, securing funding and investment. The platform maintained near 100% availability for 12 months, scaled to meet increases in data volumes and required near zero maintenance.`,
+      },
+    ]}
+    image={{
+      src: '~/assets/images/Startup.jpg',
+      alt: 'Startup Coding Screen',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Startup success stories: <br /><span class="text-2xl">Deploying to AWS</span>
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent={true}
+    items={[
+      {
+        title: 'Problem:',
+        description: `A Consultancy who typically operated on-premise next to customers needed to pivot quickly during the onset of Covid-19 epidemic.`,
+      },
+      {
+        title: 'Solution:',
+        description: `We worked quickly to establish a safe and secure Cloud Delivery environment in AWS. Integrated with Cloud IdP and provided segregated access to Cloud Networks based on roles.`,
+      },
+      {
+        title: 'Outcome:',
+        description: `The end to end environment was documented, delivered and assured allowing the consultancy to continue delivering value to their customer with their full confidence.`,
+      },
+    ]}
+    ,
+    image={{
+      src: '~/assets/images/Consultancy.jpg',
+      alt: 'Consultancy',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Consultancy Delivery Environment: <br /><span class="text-2xl">Pivoting in the face of Covid-19</span>
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <BlogLatestPosts title="Find out more about our work in our Blog" information={`Blogs inspired by our recent work`} />
+
+  <CallToAction
+    title="Let us know how we can help"
+    subtitle="We’re here to help and answer any question you might have?"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contact Us',
+        icon: 'tabler:mail',
+        href: './contact',
+      },
+    ]}
+  />
+</Layout>
