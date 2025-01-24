@@ -1,0 +1,61 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Header from '~/components/widgets/Header.astro';
+import ContactForm from '~/components/ui/FormSubmit.astro'
+import Image from '~/components/common/Image.astro';
+
+const cloudImage = '~/assets/images/cloud-cropped.png';
+
+const metadata = {
+  title: 'Contact',
+};
+---
+
+<Layout metadata={metadata}>
+  <Fragment slot="header">
+    <Header
+      links={[
+        { text: 'Home', href: '/' },
+        { text: 'Services', href: '/#services' },
+        { text: 'Engagements', href: '/#exampleengagements' },
+        { text: 'Team', href: '/#porfolio' },
+        { text: 'Blog', href: '/#blog' },
+        { text: 'Github', href: 'https://github.com/archimage-solutions' },
+      ]}
+      actions={[
+        {
+          variant: 'primary',
+          target: '_blank',
+          text: 'Contact Us',
+          href: './contact',
+          icon: 'tabler:mail',
+        },
+      ]}
+      isSticky
+      showRssFeed
+      showToggleTheme
+    />
+  </Fragment>
+
+  <Hero
+  actions={[
+    
+  ]}
+>
+  <Fragment slot="title">
+    Contact Us
+  </Fragment>
+
+  <Fragment slot="subtitle">
+    Let us know how we can help you on your Cloud Journey
+    <Image src={cloudImage} alt="Abstract Cloud Technology" height={1200} />
+    <ContactForm />
+  </Fragment>
+</Hero>
+
+  <!-- <section class="container mx-auto py-16 px-4">
+    <h1 class="text-3xl font-bold text-center mb-8">Contact Us</h1>
+    <ContactForm />
+  </section> -->
+</Layout>

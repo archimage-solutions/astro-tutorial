@@ -1,0 +1,99 @@
+---
+import Header from '~/components/widgets/Header.astro';
+import Content from '~/components/widgets/Content.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Team',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <Fragment slot="header">
+    <Header
+      links={[
+        { text: 'Home', href: '/' },
+        { text: 'Services', href: '/#services' },
+        { text: 'Engagements', href: '/#exampleengagements' },
+        { text: 'Team', href: './team' },
+        { text: 'Blog', href: './blog' },
+        { text: 'Github', href: 'https://github.com/archimage-solutions' },
+      ]}
+      actions={[
+        {
+          variant: 'primary',
+          target: '_blank',
+          text: 'Contact Us',
+          href: './contact',
+          icon: 'tabler:mail',
+        },
+      ]}
+      isSticky
+      showRssFeed
+      showToggleTheme
+    />
+  </Fragment>
+
+  <!-- Hero Widget ******************* -->
+
+  <Hero>
+    <Fragment slot="title">
+      Our Team and Partners
+    </Fragment>
+  </Hero>
+
+  <Content
+    id="Oliver"
+    columns={3}
+    items={[
+      {
+        icon: 'tabler:brand-linkedin',
+        callToAction: {
+          target: '_blank',
+          text: 'LinkedIn',
+          href: 'https://www.linkedin.com/in/oliver-prescott/',
+        },
+      },
+      {
+        icon: 'tabler:brand-github',
+        callToAction: {
+          target: '_blank',
+          text: 'GitHub',
+          href: 'https://github.com/oli-pr',
+        },
+      },
+      {
+        icon: 'simple-icons:credly',
+        callToAction: {
+          target: '_blank',
+          text: 'Credly',
+          href: 'https://www.credly.com/users/oliver-prescott',
+        },
+      },
+    ]}
+    image={{
+      src: '~/assets/images/Oliver.jpeg',
+      alt: 'Oliver',
+      loading: 'eager',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Oliver Prescott CTO/Founder</h2>
+      <p>
+        An experienced technlogist who has worked across a number of domains in the roles of Developer, Technical Lead, Solutions Architect, Enterprise Architect, Cloud Architect and Security Architect.
+      </p>
+      <br />
+      <p>
+        Oliver holds 15 AWS Certifications and participates as a Lead SME in the AWS Solutions Architect Professional Certification and SME in the AWS Advanced Networking Specialty Certification.
+      </p>
+      <br />
+      <p>Check Oliver's credentials and Connect:</p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+</Layout>

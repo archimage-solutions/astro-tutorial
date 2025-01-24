@@ -1,37 +1,40 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro"
-const pageTitle = "Tag Index"
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Image from '~/components/common/Image.astro';
+import { getAllTags } from '~/utils/blog';
 
-const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
-const tags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
+const tags = await getAllTags();
+
+const currentDomain = Astro.site?.href
+
+const cloudImage = '~/assets/images/cloud-cropped.png';
+
+const metadata = {
+  title: 'All Tags',
+  description: 'Browse all blog post tags',
+};
 ---
-<BaseLayout pageTitle={pageTitle}>
-	<div class="tags">
-        { 
-            tags.map((tag) =>
-                <p class="tag">
-                    <a href={`/tags/${tag}`}>{tag}</a>
-                </p>)
-        }
-    </div>
-</BaseLayout>
-<style>
-    a {
-      color: #00539F;
-    }
-  
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  
-    .tag {
-      margin: 0.25em;
-      border: dotted 1px #a1a1a1;
-      border-radius: .5em;
-      padding: .5em 1em;
-      font-size: 1.15em;
-      background-color: #F8FCFD;
-    }
-</style>
 
+<Layout metadata={metadata}>
+  <Hero actions={[]}>
+    <Fragment slot="title"> Blogs</Fragment>
+
+    <Fragment slot="subtitle">
+      Browse by Tags
+      <Image src={cloudImage} alt="Abstract Cloud Technology" height={1200} />
+      <div class="flex flex-wrap justify-center gap-4">
+        {
+          Object.entries(tags).map(([tagSlug, count]) => (
+            <a
+              href={`${currentDomain}tag/${tagSlug}`}
+              class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 px-4 py-2 rounded-full text-sm transition duration-150"
+            >
+              {tagSlug} ({count})
+            </a>
+          ))
+        }
+      </div>
+    </Fragment>
+  </Hero>
+</Layout> 
