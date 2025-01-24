@@ -59,16 +59,17 @@ const thankYouRef = Astro.site?.href + 'thankyou'
     </button>
   </form>
 </section>
-
 <script>
-  const form = document.getElementById('contactForm');
-  const buttonText = document.getElementById('buttonText');
-  const loadingSpinner = document.getElementById('loadingSpinner');
-  const submitButton = document.getElementById('submitButton');
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const buttonText = document.getElementById('buttonText');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const submitButton = document.getElementById('submitButton');
 
-  form?.addEventListener('submit', (e) => {
-    buttonText!.classList.add('hidden');
-    loadingSpinner!.classList.remove('hidden');
-    (submitButton as HTMLButtonElement)!.disabled = true;
+    form?.addEventListener('submit', () => {
+      buttonText!.classList.add('hidden');
+      loadingSpinner!.classList.remove('hidden');
+      (submitButton as HTMLButtonElement)!.disabled = true;
+    });
   });
 </script>
