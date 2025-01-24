@@ -73,7 +73,7 @@ export default defineConfig({
     Logger: 1,
   }), astrowind({
     config: './src/config.yaml',
-  }), preact()],
+  })],
 
   image: {
     domains: ['cdn.pixabay.com'],
