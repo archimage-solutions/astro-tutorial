@@ -2,15 +2,9 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Header from '~/components/widgets/Header.astro';
-import ContactForm from '~/components/ui/FormSubmit.astro';
 import Image from '~/components/common/Image.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-import ContactUs from '~/components/widgets/Contact.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 
 const cloudImage = '~/assets/images/cloud-cropped.png';
-
-const currentDomain = Astro.site?.href
 
 const metadata = {
   title: 'Thank you for your contact',
@@ -19,7 +13,8 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <meta http-equiv="refresh" content={ `3; url=${ Astro.site?.href }` }/>
+  <!-- <meta http-equiv="refresh" content={ `3; url=${ Astro.site?.href }` }/> -->
+  <meta http-equiv="refresh" content={ `3; url=/` }/>
   <Fragment slot="header">
     <Header
       links={[
